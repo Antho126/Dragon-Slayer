@@ -113,7 +113,7 @@ function affichageInitiative(ntour,initiateur,degats){ // afficher l'initiative
         document.write(`
             <h3>Tour n°`+ ntour+`</h3>
             <figure class="game-round">
-                <img src="img/knight-winner.png" alt="Chevalier vainqueur">
+                <img src="images/knight-winner.png" alt="Chevalier vainqueur">
                 <figcaption>Vous êtes le plus rapide, vous attaquez le dragon et lui infligez `+degats+` points de dommage !</figcaption>
             </figure>
         `);
@@ -123,7 +123,7 @@ function affichageInitiative(ntour,initiateur,degats){ // afficher l'initiative
         document.write(`
         <h3>Tour n°`+ ntour+`</h3>
         <figure class="game-round">
-            <img src="img/dragon-winner.png" alt="Dragon vainqueur">
+            <img src="images/dragon-winner.png" alt="Dragon vainqueur">
             <figcaption>Le dragon prend l'initiative, vous attaque et vous inflige `+degats+` points de dommage !</figcaption>
         </figure>
         `);
@@ -136,11 +136,11 @@ function affichageEtat(){// afficher l'état des points de vies
     document.write(`
     <div class="game-state">
         <figure class="game-state_player">
-            <img src="img/knight.png" alt="Chevalier">
+            <img src="images/knight.png" alt="Chevalier">
             <figcaption><progress max="`+maxPvPlayer+`" value="`+playerPV+`"></progress>`+playerPV+` PV</figcaption>
         </figure>
         <figure class="game-state_player">
-            <img src="img/dragon.png" alt="Dragon">
+            <img src="images/dragon.png" alt="Dragon">
             <figcaption><progress max="`+maxPvDragon+`" value="`+dragonPV+`"></progress>`+dragonPV+` PV</figcaption>
         </figure>
     </div>
@@ -155,7 +155,7 @@ function affichageFin(gagnant){ //affichage du gagnant de la partie
             <h3>Fin de la partie</h3>
             <figure class="game-end">
                 <figcaption>Vous avez gagné le combat, le dragon est éradiqué !</figcaption>
-                <img src="img/knight-winner.png" alt="Chevalier vainqueur">
+                <img src="images/knight-winner.png" alt="Chevalier vainqueur">
             </figure>
         </footer>
         `)
@@ -165,7 +165,7 @@ function affichageFin(gagnant){ //affichage du gagnant de la partie
             <h3>Fin de la partie</h3>
             <figure class="game-end">
                 <figcaption>Vous avez perdu le combat, le dragon vous a carbonisé !</figcaption>
-                <img src="img/dragon-winner.png" alt="Dragon vainqueur">
+                <img src="images/dragon-winner.png" alt="Dragon vainqueur">
             </figure>
         </footer>
         `);
@@ -181,18 +181,21 @@ function affichageFin(gagnant){ //affichage du gagnant de la partie
 
 choiceMaker();
 
-
-while (playerPV > 0 && dragonPV > 0){
-
+while(playerPV > 0 && dragonPV > 0){
     affichageEtat();
     init(tours);
     tours++;
-    
 }
-
-affichageEtat();
+    
 if (playerPV <= 0) {
+    playerPV = 0;
+    affichageEtat();
     affichageFin("dragon");
 } else if (dragonPV <= 0){
+    dragonPV = 0;
+    affichageEtat();
     affichageFin("player");
 }
+
+
+
